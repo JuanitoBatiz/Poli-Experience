@@ -46,3 +46,27 @@ window.addEventListener('resize', () => {
 
 // Inicializar la posición
 updateSlide();
+
+// Manejo de videos con overlay
+const videoCards = document.querySelectorAll('.video-card');
+
+videoCards.forEach(card => {
+  const video = card.querySelector('video');
+  const overlay = card.querySelector('.video-overlay');
+
+  overlay.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      overlay.style.display = 'none'; // Oculta overlay al reproducir
+    } else {
+      video.pause();
+      overlay.style.display = 'flex'; // Muestra overlay al pausar (opcional)
+    }
+  });
+
+  // Si quieres que al terminar el video se vuelva a mostrar el overlay
+  video.addEventListener('ended', () => {
+    overlay.style.display = 'flex';
+  });
+});
+
