@@ -1,5 +1,6 @@
 // script.js
 
+
 const slideContainer = document.querySelector('.carousel-slide');
 const slides = document.querySelectorAll('.carousel-slide img');
 const prevBtn = document.querySelector('.prev');
@@ -47,26 +48,46 @@ window.addEventListener('resize', () => {
 // Inicializar la posición
 updateSlide();
 
-// Manejo de videos con overlay
+// Script JS para menú hamburguesa
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+});
 const videoCards = document.querySelectorAll('.video-card');
 
 videoCards.forEach(card => {
   const video = card.querySelector('video');
   const overlay = card.querySelector('.video-overlay');
 
-  overlay.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-      overlay.style.display = 'none'; // Oculta overlay al reproducir
-    } else {
-      video.pause();
-      overlay.style.display = 'flex'; // Muestra overlay al pausar (opcional)
-    }
-  });
+  // Solo agregar eventos si video y overlay existen
+  if (video && overlay) {
+    overlay.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        overlay.style.display = 'none';
+      } else {
+        video.pause();
+        overlay.style.display = 'flex';
+      }
+    });
 
-  // Si quieres que al terminar el video se vuelva a mostrar el overlay
-  video.addEventListener('ended', () => {
-    overlay.style.display = 'flex';
-  });
+    video.addEventListener('ended', () => {
+      overlay.style.display = 'flex';
+    });
+  }
 });
+
+
+
 

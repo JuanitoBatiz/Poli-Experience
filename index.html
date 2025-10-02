@@ -11,23 +11,28 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">
-      <img src="img/LOGO.jpg" alt="PoliXperience Logo">
-    </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#conocenos">Conócenos</a></li>
-        <li><a href="#actividades">Actividades</a></li>
-        <li><a href="#beneficios">Beneficios</a></li>
-        <li><a href="#socios">Socios</a></li>
-        <li><a href="#convocatoria">Convocatoria</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#team">Team</a></li>
-      </ul>
-    </nav>
-  </header>
+ <header class="navbar">
+  <div class="logo">
+    <img src="img/LOGO.jpg" alt="PoliXperience Logo">
+  </div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#conocenos">Conócenos</a></li>
+      <li><a href="#actividades">Actividades</a></li>
+      <li><a href="#beneficios">Beneficios</a></li>
+      <li><a href="#socios">Socios</a></li>
+      <li><a href="#convocatoria">Convocatoria</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#team">Team</a></li>
+    </ul>
+  </nav>
+
+  <!-- Menú hamburguesa -->
+  <div class="menu-toggle">&#9776;</div>
+</header>
+
 
   <!-- Hero Section -->
   <div class="hero">
@@ -484,6 +489,7 @@ Al participar en este programa, además de impulsar tu desarrollo personal y aca
 
   </form>
 </section>
+
 <!-- ======= Sección Galería ======= -->
 <section id="galeria" class="galeria-section">
   <div class="container">
@@ -494,7 +500,7 @@ Al participar en este programa, además de impulsar tu desarrollo personal y aca
       <!-- Video 1 -->
       <div class="video-card" id="open-video-1">
         <video controls class="video-poster">
-          <source src="video/video1.mp4" type="video/mp4">
+          <source src="video/video1_mobile.mp4" type="video/mp4">
           Tu navegador no soporta el formato de video .mp4
         </video>
         <div class="video-overlay">
@@ -506,7 +512,7 @@ Al participar en este programa, además de impulsar tu desarrollo personal y aca
       <!-- Video 2 -->
       <div class="video-card" id="open-video-2">
         <video controls class="video-poster">
-          <source src="video/video2.mp4" type="video/mp4">
+          <source src="video/video2_mobile.mp4" type="video/mp4">
           Tu navegador no soporta el formato de video .mp4
         </video>
         <div class="video-overlay">
@@ -601,22 +607,7 @@ Al participar en este programa, además de impulsar tu desarrollo personal y aca
   </div>
 </section>
 
-<!-- Modal / Lightbox -->
-<div id="lightbox" class="lightbox" aria-hidden="true">
-  <div class="lightbox-content">
 
-    <!-- Contenedor para imagen -->
-    <img id="lb-image" src="" alt="" />
-
-    <!-- Contenedor para video -->
-    <div id="lb-video-wrap" class="lb-video-wrap" hidden>
-      <video id="lb-video" controls playsinline>
-        <source src="promo.mp4" type="video/mp4" />
-        Tu navegador no soporta video.
-      </video>
-    </div>
-  </div>
-</div>
 
 <!-- Sección Team --> 
 <section id="team" class="team-section">

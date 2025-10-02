@@ -5,22 +5,16 @@
   --naranja: #F8A205;  /* secundario */
 }
 
-:root {
-  --vino: #59334e;   /* principal */
-  --coral: #d24d55;  /* acento */
-  --amarillo: #FFC404; /* highlight */
-  --naranja: #F8A205;  
-}
-
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
 }
 
+/* ===== HERO ===== */
 .hero {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(rgba(89, 51, 78, 0.8), rgba(89, 51, 78, 0.8)), 
               url("img/Curriculum\ Profesional\ Sin\ Foto\ Sencillo\ Blanco\ y\ Negro.jpg") no-repeat center center/cover;
   display: flex;
@@ -29,17 +23,17 @@ body, html {
   text-align: center;
   color: white;
   overflow: hidden;
+  padding: 0 20px;
 }
 
-/* Contenido centrado con animación */
 .hero-content {
   max-width: 800px;
+  width: 100%;
   padding: 20px;
   animation: fadeUp 1.5s ease forwards;
   opacity: 0;
 }
 
-/* Título llamativo */
 .title {
   font-size: 4rem;
   font-weight: 900;
@@ -54,7 +48,6 @@ body, html {
   text-shadow: 4px 4px 10px var(--naranja);
 }
 
-/* Subtítulo */
 .subtitle {
   margin-top: 20px;
   font-size: 1.2rem;
@@ -63,25 +56,17 @@ body, html {
   text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
 }
 
-/* Animación al cargar */
 @keyframes fadeUp {
-  from {
-    transform: translateY(80px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(80px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-
-/* Barra de navegación */
+/* Navbar */
 .navbar {
-  background-color: var(--vino); /* Morado oscuro vino */
+  background-color: var(--vino);
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* logo izquierda, hamburguesa derecha */
   align-items: center;
   padding: 0.8rem 2rem;
   position: sticky;
@@ -93,23 +78,22 @@ body, html {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
-  height: 60px; /* ajusta este valor al alto de tu barra de navegación */
-  max-height: 100%;
+  height: 60px;
   object-fit: contain;
   cursor: pointer;
 }
 
 
-.logo .x {
-  color: #ffffff; /* Para que la “X” resalte en blanco */
-  font-weight: 900;
+.logo .x { 
+  color: #fff; 
+  font-weight: 900; 
 }
-
-/* Enlaces */
+/* Links de navegación */
 .nav-links {
   list-style: none;
   display: flex;
@@ -122,32 +106,254 @@ body, html {
 }
 
 .nav-links a {
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #d9b3d0; /* Un tono más claro al pasar el mouse */
+  color: #d9b3d0;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* Menú hamburguesa */
+.menu-toggle {
+  display: none; /* oculto en desktop */
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #fff;
+}
 
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; } /* botón visible */
+  
   .nav-links {
+    display: none; /* ocultamos links hasta dar click */
     flex-direction: column;
     width: 100%;
+    background: var(--vino);
+    padding: 1rem 0;
+  }
+
+  .nav-links.active {
+    display: flex;
   }
 
   .nav-links li {
     margin: 0.5rem 0;
+    text-align: center;
   }
 }
+
+/* ===== Team Section ===== */
+.team-section {
+  padding: 60px 20px;
+  background: #f8f8f8;
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  justify-items: center;
+}
+
+/* Tarjetas normales */
+.team-card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 250px;
+  cursor: pointer;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+}
+
+.team-photo img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 2px solid #eee;
+}
+
+.team-info {
+  padding: 15px;
+}
+
+.team-info h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2em;
+  color: #222;
+}
+
+.team-info p {
+  font-size: 0.9em;
+  color: #777;
+}
+
+/* Tarjeta grande */
+.team-card-big {
+  grid-column: span 4;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card-big:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.25);
+}
+
+.team-card-big img {
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+  border-bottom: 3px solid #eee;
+}
+
+.team-card-big .team-info {
+  padding: 20px;
+}
+
+.team-card-big .team-info h3 {
+  font-size: 1.8em;
+  color: #222;
+}
+
+.team-card-big .team-info p {
+  font-size: 1.1em;
+  color: #555;
+}
+
+/* ===== Sección Socios ===== */
+.socios-section {
+  padding: 4rem 2rem;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.socios-section h2 {
+  font-size: 2rem;
+  color: var(--vino);
+  margin-bottom: 2rem;
+}
+
+.socios-section .intro {
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.socios-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 10rem;
+}
+
+.socio-card {
+  background-color: #f9f9f9;
+  width: 260px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-top: 70px;
+}
+
+.socio-img {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 190px;
+  height: 100px;
+  border-radius: 0;
+  overflow: hidden;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.socio-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.socio-desc {
+  padding: 1rem 1rem 1.5rem 1rem;
+}
+
+.socio-desc h3 {
+  color: var(--vino);
+  margin-bottom: 0.5rem;
+}
+
+.socio-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transform: translateY(-3px);
+}
+
+/* ===== Responsividad ===== */
+@media (max-width: 1024px) {
+  .title { font-size: 3rem; }
+  .subtitle { font-size: 1rem; }
+}
+
+@media (max-width: 768px) {
+  /* Navbar */
+/* Mantener logo a la izquierda y hamburguesa a la derecha */
+  .navbar { flex-wrap: wrap; justify-content: space-between; }
+}  .nav-links { display: none; flex-direction: column; width: 100%; background: var(--vino); padding: 1rem 0; }
+  .nav-links.active { display: flex; }
+  .nav-links li { margin: 0.5rem 0; text-align: center; }
+  .menu-toggle { display: block; }
+
+  /* Hero */
+  .title { font-size: 2.2rem; }
+  .title .x { font-size: 1.1em; }
+  .subtitle { font-size: 0.95rem; line-height: 1.4; }
+  .hero { min-height: 70vh; padding: 60px 20px; }
+
+  /* Team */
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-card-big { grid-column: span 2; max-width: 90%; }
+
+  /* Socios */
+  .socio-card { width: 90%; }
+
+
+@media (max-width: 480px) {
+  .title { font-size: 1.8rem; }
+  .title .x { font-size: 1em; }
+  .subtitle { font-size: 0.9rem; line-height: 1.3; }
+  .hero { min-height: auto; padding: 50px 15px; }
+  .team-grid { grid-template-columns: 1fr; }
+  .team-card-big { grid-column: span 1; max-width: 100%; }
+}
+
+
 
 /* Sección Inicio */
 .inicio-section {
@@ -493,7 +699,6 @@ body, html {
   opacity: 1;
   max-height: 200px;
 }
-
 /* ===== Sección Socios ===== */
 .socios-section {
   padding: 4rem 2rem;
@@ -514,7 +719,7 @@ body, html {
   color: #555;
 }
 
-
+/* Contenedor de tarjetas */
 .socios-container {
   display: flex;
   justify-content: center;
@@ -523,6 +728,7 @@ body, html {
   margin-top: 10rem;
 }
 
+/* Tarjeta individual */
 .socio-card {
   background-color: #f9f9f9;
   width: 260px;
@@ -530,13 +736,13 @@ body, html {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
   transition: all 0.3s ease;
-  position: relative; /* importante para posicionar el círculo */
+  position: relative; /* importante para el círculo */
   padding-top: 70px; /* espacio para el círculo */
 }
 
 .socio-img {
   position: absolute;
-  top: -50px; /* el círculo queda mitad fuera, mitad dentro */
+  top: -50px; /* mitad fuera, mitad dentro */
   left: 50%;
   transform: translateX(-50%);
   width: 190px;
@@ -568,16 +774,57 @@ body, html {
   transform: translateY(-3px);
 }
 
+/* ===== Responsividad ===== */
+@media (max-width: 992px) {
+  .socios-container {
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .socios-container {
     flex-direction: column;
     align-items: center;
+    margin-top: 5rem;
   }
 
   .socio-card {
-    width: 90%;
+    width: 80%;
+    padding-top: 60px;
+  }
+
+  .socio-img {
+    width: 150px;
+    height: 80px;
+    top: -40px;
   }
 }
+
+@media (max-width: 480px) {
+  .socio-card {
+    width: 95%;
+    padding-top: 50px;
+  }
+
+  .socio-img {
+    width: 130px;
+    height: 70px;
+    top: -35px;
+  }
+
+  .socio-desc h3 {
+    font-size: 1rem;
+  }
+
+  .socios-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .socios-section .intro {
+    font-size: 0.9rem;
+  }
+}
+
 
 
 #convocatoria {
@@ -1014,7 +1261,6 @@ body, html {
   }
 }
 
-
 .team-section {
   padding: 60px 20px;
   background: #f8f8f8;
@@ -1070,6 +1316,7 @@ body, html {
   font-size: 0.9em;
   color: #777;
 }
+
 /* --- Tarjeta grupal --- */
 .team-card-big {
   grid-column: span 4; /* ocupa todo el ancho de la cuadrícula */
@@ -1090,7 +1337,7 @@ body, html {
 
 .team-card-big img {
   width: 100%;
-  height: 650px; /* 🔥 ahora más alta para que no se corte nada */
+  height: 650px; /* 🔥 altura base */
   object-fit: cover;
   border-bottom: 3px solid #eee;
 }
@@ -1109,19 +1356,16 @@ body, html {
   color: #555;
 }
 
-
-
-
-/* Íconos inline: tamaño fijo, sin alterar layout */
+/* Íconos inline */
 .icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;       /* tamaño fijo para no mover texto */
+  width: 34px;
   height: 34px;
   margin-right: 10px;
   vertical-align: middle;
-  color: var(--vino); /* usa la variable de paleta si ya la tienes */
+  color: var(--vino);
 }
 
 .flip-card-front p,
@@ -1139,7 +1383,7 @@ body, html {
   margin-right: 8px;
 }
 
-/* Forzar que los SVG usen currentColor (ya definidos) */
+/* Forzar que los SVG usen currentColor */
 .icon svg {
   display: block;
   width: 100%;
@@ -1147,13 +1391,59 @@ body, html {
   color: inherit;
 }
 
-/* Ajuste visual: mantener líneas de texto legibles junto al icono */
 .flip-card-back p {
   text-align: left;
   line-height: 1.4;
 }
 
-/* En pantallas muy pequeñas mantener proporción */
+/* 🔹 Responsividad */
+@media (max-width: 1200px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .team-card-big {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .team-card-big {
+    grid-column: span 2;
+  }
+  .team-card-big img {
+    height: 450px; /* reduce altura en pantallas medianas */
+  }
+}
+
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-card {
+    width: 90%;
+  }
+  .team-card-big {
+    grid-column: span 1;
+    max-width: 100%;
+  }
+  .team-card-big img {
+    height: 300px; /* altura más compacta en móvil */
+  }
+  .team-section h2 {
+    font-size: 1.8em;
+  }
+  .team-info h3 {
+    font-size: 1em;
+  }
+  .team-info p {
+    font-size: 0.85em;
+  }
+}
+
+/* Ajuste iconos en móviles */
 @media (max-width: 420px) {
   .icon { width: 28px; height: 28px; }
   .flip-card-back .icon { width: 18px; height: 18px; }
