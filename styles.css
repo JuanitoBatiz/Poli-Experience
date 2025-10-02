@@ -38,14 +38,16 @@ body, html {
   font-size: 4rem;
   font-weight: 900;
   letter-spacing: 2px;
-  color: var(--amarillo);
-  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+  color: #F5F5F5; /* Blanco cálido (mejor legibilidad que amarillo) */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.8),
+               0 0 12px rgba(255,255,255,0.3); /* Glow sutil blanco */
 }
 
 .title .x {
-  color: var(--coral);
+  color: #E67E22; /* Naranja quemado, combina con guinda y resalta del blanco */
   font-size: 1.2em;
-  text-shadow: 4px 4px 10px var(--naranja);
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8),
+               0 0 10px rgba(230,126,34,0.6); /* Glow cálido */
 }
 
 .subtitle {
@@ -60,90 +62,85 @@ body, html {
   from { transform: translateY(80px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
-
 /* Navbar */
 .navbar {
-  background-color: var(--vino);
+  background: linear-gradient(90deg, #5C1E2A 0%, #7B283A 100%); /* degradado guinda elegante */
   color: #fff;
   display: flex;
-  justify-content: space-between; /* logo izquierda, hamburguesa derecha */
+  justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 2rem;
+  padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* sombra inferior sutil */
 }
 
 /* Logo */
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-}
-
 .logo img {
   height: 60px;
   object-fit: contain;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.logo img:hover {
+  transform: scale(1.05);
 }
 
-
-.logo .x { 
-  color: #fff; 
-  font-weight: 900; 
-}
 /* Links de navegación */
 .nav-links {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
-}
-
-.nav-links li {
-  margin-left: 1.5rem;
+  gap: 2rem; /* más espacio, se ve institucional */
 }
 
 .nav-links a {
   color: #fff;
   text-decoration: none;
   font-size: 1rem;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 3px;
 }
 
 .nav-links a:hover {
-  color: #d9b3d0;
+  color: #FFD700; /* dorado institucional */
+  border-bottom: 2px solid #FFD700; /* subrayado elegante */
 }
 
-/* Menú hamburguesa */
+/* Menú hamburguesa (móvil) */
 .menu-toggle {
-  display: none; /* oculto en desktop */
+  display: none;
   font-size: 1.8rem;
   cursor: pointer;
   color: #fff;
+  transition: transform 0.3s ease;
+}
+.menu-toggle:hover {
+  transform: rotate(90deg);
 }
 
-/* Media query para dispositivos móviles */
+/* Responsive */
 @media (max-width: 768px) {
-  .menu-toggle { display: block; } /* botón visible */
-  
   .nav-links {
-    display: none; /* ocultamos links hasta dar click */
+    display: none;
     flex-direction: column;
     width: 100%;
-    background: var(--vino);
+    background: #5C1E2A; /* guinda sólido en móvil */
     padding: 1rem 0;
+    border-top: 1px solid rgba(255,255,255,0.2);
   }
-
   .nav-links.active {
     display: flex;
   }
-
   .nav-links li {
     margin: 0.5rem 0;
     text-align: center;
   }
+  .menu-toggle { display: block; }
 }
 
 /* ===== Team Section ===== */
@@ -325,7 +322,7 @@ body, html {
   /* Navbar */
 /* Mantener logo a la izquierda y hamburguesa a la derecha */
   .navbar { flex-wrap: wrap; justify-content: space-between; }
-}  .nav-links { display: none; flex-direction: column; width: 100%; background: var(--vino); padding: 1rem 0; }
+  .nav-links { display: none; flex-direction: column; width: 100%; background: var(--vino); padding: 1rem 0; }
   .nav-links.active { display: flex; }
   .nav-links li { margin: 0.5rem 0; text-align: center; }
   .menu-toggle { display: block; }
@@ -342,6 +339,7 @@ body, html {
 
   /* Socios */
   .socio-card { width: 90%; }
+}
 
 
 @media (max-width: 480px) {
@@ -1145,9 +1143,9 @@ body, html {
   padding: 8px 12px;
   border-radius: 6px;
 }
-
 .youtube-card {
   width: 320px;
+  max-height: 350px; /* un poco más alta que antes */
   background-color: #111;
   color: #fff;
   border-radius: 12px;
@@ -1155,7 +1153,12 @@ body, html {
   box-shadow: 0 6px 15px rgba(0,0,0,0.3);
   transition: transform 0.3s, box-shadow 0.3s;
   margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* mantiene contenido bien distribuido */
+  padding: px; /* padding reducido pero cómodo */
 }
+
 
 .youtube-card:hover {
   transform: translateY(-5px);

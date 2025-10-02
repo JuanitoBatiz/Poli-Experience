@@ -17,7 +17,7 @@
   </div>
 
   <nav>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="#inicio">Inicio</a></li>
       <li><a href="#conocenos">Conócenos</a></li>
       <li><a href="#actividades">Actividades</a></li>
@@ -30,8 +30,128 @@
   </nav>
 
   <!-- Menú hamburguesa -->
-  <div class="menu-toggle">&#9776;</div>
+  <div class="menu-toggle" id="menuToggle" aria-controls="navLinks" aria-expanded="false">&#9776;</div>
 </header>
+
+<!-- ---------- CSS (agrega en tu archivo .css) ---------- -->
+<style>
+  /* Variables de ejemplo - mantén tu --vino si ya la tienes */
+  :root {
+    --vino: #6b2031;
+  }
+
+  /* Navbar */
+  .navbar {
+    background-color: var(--vino);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  /* Logo */
+  .logo { display:flex; align-items:center; }
+  .logo img { height:60px; object-fit:contain; cursor:pointer; }
+
+  /* Links de navegación - por defecto en desktop */
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;           /* importante: mostrar en desktop */
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .navbar .nav-links li { margin-left: 0; } /* ya usamos gap */
+  .navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  .navbar .nav-links a:hover { color: #d9b3d0; }
+
+  /* Menú hamburguesa - oculto en desktop */
+  .navbar .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  /* --------- Mobile styles (todo lo relativo al menú en móvil va solo aquí) --------- */
+  @media (max-width: 768px) {
+    .navbar { flex-wrap: wrap; padding: 0.8rem 1rem; }
+
+    /* hamburguesa visible en móvil */
+    .navbar .menu-toggle { display: block; }
+
+    /* nav oculto por defecto en móvil; se mostrará con .active */
+    .navbar .nav-links {
+      display: none;            /* oculto por defecto en móvil */
+      flex-direction: column;
+      width: 100%;
+      background: var(--vino);
+      padding: 0.6rem 0;
+      margin-top: 0.5rem;
+    }
+    .navbar .nav-links.active {
+      display: flex;            /* se muestra al agregar la clase active */
+    }
+
+    .navbar .nav-links li {
+      margin: 0.4rem 0;
+      text-align: center;
+    }
+  }
+
+  /* Evitar interferencias: si un framework fuerza display none con mayor especificidad,
+     aumenta especificidad aquí (por ejemplo .navbar .nav-links) en vez de usar !important. */
+</style>
+
+<!-- ---------- JS (al final del body) ---------- -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const MENU_BREAKPOINT = 768;
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('navLinks');
+
+    if (!toggle || !nav) return;
+
+    // Click handler: solo toggle cuando estemos en móvil (evita comportamiento en desktop)
+    toggle.addEventListener('click', function () {
+      if (window.innerWidth <= MENU_BREAKPOINT) {
+        const opened = nav.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+      }
+    });
+
+    // Si el usuario redimensiona a desktop, quitamos la clase active para que se muestre el nav por CSS
+    let resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        if (window.innerWidth > MENU_BREAKPOINT) {
+          nav.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 120);
+    });
+
+    // Opcional: cerrar menú al pulsar un enlace (mejora UX en móvil)
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A' && window.innerWidth <= MENU_BREAKPOINT) {
+        nav.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
+
 
 
   <!-- Hero Section -->
